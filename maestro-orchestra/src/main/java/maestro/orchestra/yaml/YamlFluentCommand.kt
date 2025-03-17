@@ -42,6 +42,7 @@ import maestro.orchestra.InputRandomCommand
 import maestro.orchestra.InputRandomType
 import maestro.orchestra.InputTextCommand
 import maestro.orchestra.KillAppCommand
+import maestro.orchestra.FillTextCommand
 import maestro.orchestra.LaunchAppCommand
 import maestro.orchestra.MaestroCommand
 import maestro.orchestra.MaestroConfig
@@ -96,6 +97,7 @@ data class YamlFluentCommand(
     val inputRandomNumber: YamlInputRandomNumber? = null,
     val inputRandomEmail: YamlInputRandomEmail? = null,
     val inputRandomPersonName: YamlInputRandomPersonName? = null,
+    val fillText: YamlFillText? = null,
     val launchApp: YamlLaunchApp? = null,
     val swipe: YamlSwipe? = null,
     val openLink: YamlOpenLink? = null,
@@ -128,6 +130,15 @@ data class YamlFluentCommand(
     @SuppressWarnings("ComplexMethod")
     fun toCommands(flowPath: Path, appId: String): List<MaestroCommand> {
         return when {
+            fillText != null -> listOf(
+                 MaestroCommand(
+                    FillTextCommand(
+                        text = fillText.text,
+                        label = fillText.label,
+                    )
+                )
+            )
+            
             launchApp != null -> listOf(launchApp(launchApp, appId))
             tapOn != null -> listOf(tapCommand(tapOn))
             longPressOn != null -> listOf(tapCommand(longPressOn, longPress = true))

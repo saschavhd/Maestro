@@ -471,6 +471,22 @@ data class InputTextCommand(
     }
 }
 
+data class FillTextCommand(
+    val text: String, 
+    override val label: String? = null, 
+    override val optional: Boolean = false
+) : Command { 
+    override fun description(): String {
+        return label ?: "Fill text $text"
+    }
+
+    override fun evaluateScripts(jsEngine: JsEngine): FillTextCommand {
+        return copy(
+            text = text.evaluateScripts(jsEngine)
+        )
+    }
+}
+
 data class LaunchAppCommand(
     val appId: String,
     val clearState: Boolean? = null,

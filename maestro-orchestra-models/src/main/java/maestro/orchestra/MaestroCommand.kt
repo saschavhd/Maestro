@@ -41,6 +41,7 @@ data class MaestroCommand(
     val extractTextWithAICommand: ExtractTextWithAICommand? = null,
     val inputTextCommand: InputTextCommand? = null,
     val inputRandomTextCommand: InputRandomCommand? = null,
+    val fillTextCommand: FillTextCommand? = null,
     val launchAppCommand: LaunchAppCommand? = null,
     val applyConfigurationCommand: ApplyConfigurationCommand? = null,
     val openLinkCommand: OpenLinkCommand? = null,
@@ -85,6 +86,7 @@ data class MaestroCommand(
         extractTextWithAICommand = command as? ExtractTextWithAICommand,
         inputTextCommand = command as? InputTextCommand,
         inputRandomTextCommand = command as? InputRandomCommand,
+        fillTextCommand = command as? FillTextCommand,
         launchAppCommand = command as? LaunchAppCommand,
         applyConfigurationCommand = command as? ApplyConfigurationCommand,
         openLinkCommand = command as? OpenLinkCommand,
@@ -129,6 +131,7 @@ data class MaestroCommand(
         extractTextWithAICommand != null -> extractTextWithAICommand
         inputTextCommand != null -> inputTextCommand
         inputRandomTextCommand != null -> inputRandomTextCommand
+        fillTextCommand != null -> fillTextCommand
         launchAppCommand != null -> launchAppCommand
         applyConfigurationCommand != null -> applyConfigurationCommand
         openLinkCommand != null -> openLinkCommand

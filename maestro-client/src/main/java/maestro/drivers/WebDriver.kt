@@ -157,6 +157,10 @@ class WebDriver(
         )
     }
 
+    override fun fillText(text: String) {
+       // TODO: Implement
+    }
+
     override fun launchApp(
         appId: String,
         launchArguments: Map<String, Any>,

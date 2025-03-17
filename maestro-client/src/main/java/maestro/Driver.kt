@@ -32,6 +32,8 @@ interface Driver {
     fun close()
 
     fun deviceInfo(): DeviceInfo
+    
+    fun fillText(text: String)
 
     fun launchApp(
         appId: String,

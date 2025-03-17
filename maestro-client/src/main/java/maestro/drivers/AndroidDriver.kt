@@ -215,6 +215,10 @@ class AndroidDriver(
         }
     }
 
+    override fun fillText(text: String) {
+        dadb.shell("input text $text")
+    }
+
     override fun launchApp(
         appId: String,
         launchArguments: Map<String, Any>,

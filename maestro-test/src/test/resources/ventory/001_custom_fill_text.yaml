@@ -1,0 +1,4 @@
+appId: com.example.app
+---
+- fillText: "Hello World"
+- fillText: user@example.com
