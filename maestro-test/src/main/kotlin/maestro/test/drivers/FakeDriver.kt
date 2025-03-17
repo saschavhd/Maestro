@@ -81,6 +81,14 @@ class FakeDriver : Driver {
         )
     }
 
+    override fun fillText(text: String) {
+        ensureOpen()
+
+        currentText += text
+
+        events += Event.FillText(text)
+    }
+
     override fun launchApp(
         appId: String,
         launchArguments: Map<String, Any>,
@@ -406,6 +414,10 @@ class FakeDriver : Driver {
         object BackPress : Event(), UserInteraction
 
         object HideKeyboard : Event(), UserInteraction
+
+        data class FillText(
+            val text: String
+        ) : Event(), UserInteraction
 
         data class InputText(
             val text: String

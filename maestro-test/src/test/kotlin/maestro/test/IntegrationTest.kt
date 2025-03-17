@@ -348,6 +348,26 @@ class IntegrationTest {
     }
 
     @Test
+    fun `Ventory - 001 - Fill Text`() {
+        // Given
+        val commands = readCommands("ventory/001_custom_fill_text.yaml")
+
+        val driver = driver {
+        }
+
+        // When
+        Maestro(driver).use {
+            orchestra(it).runFlow(commands)
+        }
+
+        // Then
+        // No test failure
+        driver.assertHasEvent(Event.FillText("Hello World"))
+        driver.assertHasEvent(Event.FillText("user@example.com"))
+        driver.assertCurrentTextInput("Hello Worlduser@example.com")
+    }
+
+    @Test
     fun `Case 013 - Launch app`() {
         // Given
         val commands = readCommands("013_launch_app")

@@ -58,6 +58,13 @@ class Maestro(
 
     private var screenRecordingInProgress = false
 
+    fun fillText(text: String){
+        LOGGER.info("Filling text")
+
+        driver.fillText(text)
+        waitForAppToSettle()
+    }
+
     fun launchApp(
         appId: String,
         launchArguments: Map<String, Any> = emptyMap(),
@@ -82,6 +89,7 @@ class Maestro(
 
         driver.killApp(appId)
     }
+
 
     fun clearAppState(appId: String) {
         LOGGER.info("Clearing app state $appId")

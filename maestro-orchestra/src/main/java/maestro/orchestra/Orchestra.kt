@@ -296,6 +296,7 @@ class Orchestra(
             is ExtractTextWithAICommand -> extractTextWithAICommand(command)
             is InputTextCommand -> inputTextCommand(command)
             is InputRandomCommand -> inputTextRandomCommand(command)
+            is FillTextCommand -> fillTextCommand(command)
             is LaunchAppCommand -> launchAppCommand(command)
             is OpenLinkCommand -> openLinkCommand(command, config)
             is PressKeyCommand -> pressKeyCommand(command)
@@ -861,6 +862,12 @@ class Orchestra(
         maestro.openLink(command.link, config?.appId, command.autoVerify ?: false, command.browser ?: false)
 
         return true
+    }
+
+    private fun fillTextCommand(command: FillTextCommand): Boolean {
+        maestro.fillText(command.text)
+
+        return true;
     }
 
     private fun launchAppCommand(command: LaunchAppCommand): Boolean {
